@@ -16,11 +16,14 @@ public class GameManager : MonoBehaviour
     public Button actionThreeButton;
 
     [Header("Animal Settings")]
-    public GameObject virtualPet;
+    public AIController virtualPet;
     public Sprite snakeSprite;
     public Sprite owlSprite;
     public Sprite slothSprite;
     public enum Species {Snake, Owl, Sloth}
+
+    [Header("World Settings")]
+    public int turnsPerDay;
 
     void Awake()
     {

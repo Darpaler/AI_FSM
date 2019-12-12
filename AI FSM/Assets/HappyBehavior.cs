@@ -13,17 +13,19 @@ public class HappyBehavior : StateMachineBehaviour
     {
 
         this.animator = animator;
-        GameManager.instance.actionOneButton.GetComponentInChildren<TextMeshProUGUI>().text = "Kill";
-        GameManager.instance.actionTwoButton.GetComponentInChildren<TextMeshProUGUI>().text = "Kill";
-        GameManager.instance.actionThreeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Kill";
+        GameManager.instance.actionOneButton.GetComponentInChildren<TextMeshProUGUI>().text = "Play";
+        GameManager.instance.actionTwoButton.GetComponentInChildren<TextMeshProUGUI>().text = "Feed";
+        GameManager.instance.actionThreeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Send to bed";
+
+        GameManager.instance.virtualPet.ResetUI();
+        GameManager.instance.actionOneButton.onClick.AddListener(Play);
+        GameManager.instance.actionTwoButton.onClick.AddListener(Feed);
+        GameManager.instance.actionThreeButton.onClick.AddListener(Sleep);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameManager.instance.actionOneButton.onClick.AddListener(Kill);
-        GameManager.instance.actionTwoButton.onClick.AddListener(Kill);
-        GameManager.instance.actionThreeButton.onClick.AddListener(Kill);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -46,17 +48,17 @@ public class HappyBehavior : StateMachineBehaviour
 
     void Feed()
     {
-
+        GameManager.instance.virtualPet.EndTurn();
     }
 
     void Play()
     {
-
+        GameManager.instance.virtualPet.EndTurn();
     }
 
-    void Kill()
+    void Sleep()
     {
-        animator.SetFloat("health", -1 );
+        GameManager.instance.virtualPet.EndTurn();
     }
 
 }
