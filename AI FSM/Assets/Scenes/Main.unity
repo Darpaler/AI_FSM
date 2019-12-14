@@ -337,7 +337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475743004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1900,6 +1900,7 @@ MonoBehaviour:
   snakeSprite: {fileID: 21300000, guid: b36884987e001cc4b9eb50063fd2c6b8, type: 3}
   owlSprite: {fileID: 21300000, guid: ad5f3f869114a7b40a37abf07af1af9b, type: 3}
   slothSprite: {fileID: 21300000, guid: 11bfa60091483e14da76c621919be348, type: 3}
+  eggSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   turnsPerDay: 6
 --- !u!4 &1966790559
 Transform:

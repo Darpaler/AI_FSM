@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Sprite snakeSprite;
     public Sprite owlSprite;
     public Sprite slothSprite;
+    public Sprite eggSprite;
     public enum Species {Snake, Owl, Sloth}
 
     [Header("World Settings")]

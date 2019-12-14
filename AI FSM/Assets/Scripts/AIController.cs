@@ -15,12 +15,33 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI turnsUI;
 
+    private int defaultAge;
+    private float defaultHunger;
+    private float defaultEnergy;
+    private bool defaultDayTime;
+    private float defaultAffection;
+    private float defaultEntertainment;
+    private float defaultHealth;
+    private int defaultWeather;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         turnsLeft = GameManager.instance.turnsPerDay;
         SetUI();
+
+        // Default Variables
+        defaultAge = animator.GetInteger("age");
+        defaultHunger = animator.GetFloat("hunger");
+        defaultEnergy = animator.GetFloat("energy");
+        defaultDayTime = animator.GetBool("dayTime");
+        defaultAffection = animator.GetFloat("affection");
+        defaultEntertainment = animator.GetFloat("entertainment");
+        defaultHealth = animator.GetFloat("health");
+        defaultWeather = animator.GetInteger("weather");
     }
 
     // Update is called once per frame
@@ -37,7 +58,7 @@ public class AIController : MonoBehaviour
         GameManager.instance.pass.onClick.RemoveAllListeners();
     }
 
-    void SetUI()
+    public void SetUI()
     {
         turnsUI.text = "Turns Left: " + turnsLeft;
         if (animator.GetBool("dayTime"))
@@ -92,4 +113,17 @@ public class AIController : MonoBehaviour
         turnsLeft = 1;
         EndTurn();
     }
+
+    public void ResetStats()
+    {
+        animator.SetInteger("age", defaultAge);
+        animator.SetFloat("hunger", defaultHunger);
+        animator.SetFloat("energy", defaultEnergy);
+        animator.SetBool("dayTime", defaultDayTime);
+        animator.SetFloat("affection", defaultAffection);
+        animator.SetFloat("entertainment", defaultEntertainment);
+        animator.SetFloat("health", defaultHealth);
+        animator.SetInteger("weather", defaultWeather);
+    }
+
 }

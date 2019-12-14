@@ -25,9 +25,10 @@ public class HappyBehavior : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -49,6 +50,9 @@ public class HappyBehavior : StateMachineBehaviour
 
     void Feed()
     {
+        // Lower Entertainment
+        animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
+
         // Restore hunger
         animator.SetFloat("hunger", animator.GetFloat("hunger") + 4);              
         
@@ -65,18 +69,30 @@ public class HappyBehavior : StateMachineBehaviour
 
     void Play()
     {
+        // Raise Entertainment
+        animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") + 3, 0, 10));
+
+        // Raise Entertainment
         animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
+        
+        // Lower Energy
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);
+        
         GameManager.instance.virtualPet.EndTurn();
     }
 
     void Sleep()
     {
+        // Lower Entertainment
+        animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
+
         GameManager.instance.virtualPet.Sleep();
     }
 
     void Pass()
     {
+        // Lower Entertainment
+        animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 3, 0, 10));
         animator.SetFloat("energy", animator.GetFloat("energy") - 1);
         GameManager.instance.virtualPet.EndTurn();
     }

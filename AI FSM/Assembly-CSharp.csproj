@@ -63,9 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BoredBehavior.cs" />
     <Compile Include="Assets\DeadBehavior.cs" />
+    <Compile Include="Assets\EvolveBehavior.cs" />
     <Compile Include="Assets\HappyBehavior.cs" />
     <Compile Include="Assets\HungryBehavior.cs" />
+    <Compile Include="Assets\SadBehavior.cs" />
     <Compile Include="Assets\Scripts\AIController.cs" />
     <Compile Include="Assets\Scripts\EggBehavior.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
