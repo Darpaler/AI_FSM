@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Button actionOneButton;
     public Button actionTwoButton;
     public Button actionThreeButton;
+    public Button pass;
 
     [Header("Animal Settings")]
     public AIController virtualPet;

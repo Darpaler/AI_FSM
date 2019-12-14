@@ -34,6 +34,7 @@ public class AIController : MonoBehaviour
         GameManager.instance.actionOneButton.onClick.RemoveAllListeners();
         GameManager.instance.actionTwoButton.onClick.RemoveAllListeners();
         GameManager.instance.actionThreeButton.onClick.RemoveAllListeners();
+        GameManager.instance.pass.onClick.RemoveAllListeners();
     }
 
     void SetUI()
@@ -51,6 +52,8 @@ public class AIController : MonoBehaviour
 
     public void EndTurn()
     {
+        animator.SetFloat("hunger", animator.GetFloat("hunger") - 1);
+
         turnsLeft--;
         // If you used half of your turns
         if (turnsLeft <= GameManager.instance.turnsPerDay / 2)
@@ -69,7 +72,24 @@ public class AIController : MonoBehaviour
             // Increment age
             animator.SetInteger("age",animator.GetInteger("age") + 1);
         }
-
+        
+        // Set the UI
         SetUI();
+        
+        // If the pet ran out of energy, it passes out
+        if(animator.GetFloat("energy") <= 0)
+        {
+            Sleep();
+        }
+    }
+    
+    public void Sleep()
+    {
+        // Refresh energy
+        animator.SetFloat("energy", 10);
+        
+        // End the day
+        turnsLeft = 1;
+        EndTurn();
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 359324246}
   - component: {fileID: 359324245}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: ActionTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 1505069812}
   - component: {fileID: 1505069811}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ActionOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1621,7 +1621,7 @@ GameObject:
   - component: {fileID: 1643674335}
   - component: {fileID: 1643674334}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: ActionThree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1743,7 +1743,7 @@ GameObject:
   - component: {fileID: 1743388438}
   - component: {fileID: 1743388437}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Pass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1811,7 +1811,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1743388438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 475743008}
+        m_MethodName: EndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1743388438
@@ -1884,6 +1895,7 @@ MonoBehaviour:
   actionOneButton: {fileID: 1505069811}
   actionTwoButton: {fileID: 359324245}
   actionThreeButton: {fileID: 1643674334}
+  pass: {fileID: 1743388437}
   virtualPet: {fileID: 475743008}
   snakeSprite: {fileID: 21300000, guid: b36884987e001cc4b9eb50063fd2c6b8, type: 3}
   owlSprite: {fileID: 21300000, guid: ad5f3f869114a7b40a37abf07af1af9b, type: 3}
