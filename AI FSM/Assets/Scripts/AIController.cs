@@ -16,6 +16,12 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI turnsUI;
 
+    public TextMeshProUGUI hungerUI;
+    public TextMeshProUGUI energyUI;
+    public TextMeshProUGUI affectionUI;
+    public TextMeshProUGUI entertainmentUI;
+    public TextMeshProUGUI healthUI;
+
     [SerializeField]
     private Button optionOneButton;
     private TextMeshProUGUI optionOneText;
@@ -83,6 +89,7 @@ public class AIController : MonoBehaviour
     public void SetUI()
     {
         turnsUI.text = "Turns Left: " + turnsLeft;
+
         if (animator.GetBool("dayTime"))
         {
             dayUI.text = "Day: " + animator.GetInteger("age");
@@ -91,6 +98,13 @@ public class AIController : MonoBehaviour
         {
             dayUI.text = "Night: " + animator.GetInteger("age");
         }
+
+        hungerUI.text = "Hunger: " + animator.GetFloat("hunger") + "/10";
+        energyUI.text = "Energy: " + animator.GetFloat("energy") + "/10";
+        affectionUI.text = "Affection: " + animator.GetFloat("affection") + "/10";
+        entertainmentUI.text = "Entertainment: " + animator.GetFloat("entertainment") + "/10";
+        healthUI.text = "Health: " + animator.GetFloat("health") + "/10";
+
     }
 
     private void ToggleOptions()

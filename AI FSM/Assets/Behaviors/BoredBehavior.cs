@@ -22,6 +22,8 @@ public class BoredBehavior : StateMachineBehaviour
         GameManager.instance.actionTwoButton.onClick.AddListener(Feed);
         GameManager.instance.actionThreeButton.onClick.AddListener(Sleep);
         GameManager.instance.pass.onClick.AddListener(Pass);
+
+        GameManager.instance.virtualPet.entertainmentUI.color = Color.red;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -31,10 +33,10 @@ public class BoredBehavior : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        GameManager.instance.virtualPet.entertainmentUI.color = Color.white;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

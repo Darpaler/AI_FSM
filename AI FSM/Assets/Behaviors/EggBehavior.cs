@@ -33,6 +33,12 @@ public class EggBehavior : StateMachineBehaviour
         // Set Nature
         animator.SetInteger("nature", Random.Range(1, 3));
         Debug.Log(animator.GetInteger("nature"));
+
+        GameManager.instance.virtualPet.hungerUI.color = Color.clear;
+        GameManager.instance.virtualPet.energyUI.color = Color.clear;
+        GameManager.instance.virtualPet.affectionUI.color = Color.clear;
+        GameManager.instance.virtualPet.entertainmentUI.color = Color.clear;
+        GameManager.instance.virtualPet.healthUI.color = Color.clear;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -44,6 +50,11 @@ public class EggBehavior : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GameManager.instance.virtualPet.hungerUI.color = Color.white;
+        GameManager.instance.virtualPet.energyUI.color = Color.white;
+        GameManager.instance.virtualPet.affectionUI.color = Color.white;
+        GameManager.instance.virtualPet.entertainmentUI.color = Color.white;
+        GameManager.instance.virtualPet.healthUI.color = Color.white;
         GameManager.instance.pass.gameObject.SetActive(true);
     }
 
