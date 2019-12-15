@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AIController : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI turnsUI;
 
+    [SerializeField]
+    private Button optionOneButton;
+    private TextMeshProUGUI optionOneText;
+    [SerializeField]
+    private Button optionTwoButton;
+    private TextMeshProUGUI optionTwoText;
+    [SerializeField]
+    private Button optionThreeButton;
+    private TextMeshProUGUI optionThreeText;
+
+
     private int defaultAge;
     private float defaultHunger;
     private float defaultEnergy;
@@ -22,15 +34,19 @@ public class AIController : MonoBehaviour
     private float defaultAffection;
     private float defaultEntertainment;
     private float defaultHealth;
-    private int defaultWeather;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // Get Components
         animator = GetComponent<Animator>();
         turnsLeft = GameManager.instance.turnsPerDay;
+        optionOneText = optionOneButton.GetComponentInChildren<TextMeshProUGUI>();
+        optionTwoText = optionTwoButton.GetComponentInChildren<TextMeshProUGUI>();
+        optionThreeText = optionThreeButton.GetComponentInChildren<TextMeshProUGUI>();
+
         SetUI();
 
         // Default Variables
@@ -41,7 +57,6 @@ public class AIController : MonoBehaviour
         defaultAffection = animator.GetFloat("affection");
         defaultEntertainment = animator.GetFloat("entertainment");
         defaultHealth = animator.GetFloat("health");
-        defaultWeather = animator.GetInteger("weather");
     }
 
     // Update is called once per frame
@@ -58,6 +73,13 @@ public class AIController : MonoBehaviour
         GameManager.instance.pass.onClick.RemoveAllListeners();
     }
 
+    private void ResetOptions()
+    {
+        optionOneButton.onClick.RemoveAllListeners();
+        optionTwoButton.onClick.RemoveAllListeners();
+        optionThreeButton.onClick.RemoveAllListeners();
+    }
+
     public void SetUI()
     {
         turnsUI.text = "Turns Left: " + turnsLeft;
@@ -69,6 +91,17 @@ public class AIController : MonoBehaviour
         {
             dayUI.text = "Night: " + animator.GetInteger("age");
         }
+    }
+
+    private void ToggleOptions()
+    {
+        GameManager.instance.actionOneButton.gameObject.SetActive(!GameManager.instance.actionOneButton.gameObject.activeSelf);
+        GameManager.instance.actionTwoButton.gameObject.SetActive(!GameManager.instance.actionTwoButton.gameObject.activeSelf);
+        GameManager.instance.actionThreeButton.gameObject.SetActive(!GameManager.instance.actionThreeButton.gameObject.activeSelf);
+        GameManager.instance.pass.gameObject.SetActive(!GameManager.instance.pass.gameObject.activeSelf);
+        optionOneButton.gameObject.SetActive(!optionOneButton.gameObject.activeSelf);
+        optionTwoButton.gameObject.SetActive(!optionTwoButton.gameObject.activeSelf);
+        optionThreeButton.gameObject.SetActive(!optionThreeButton.gameObject.activeSelf);
     }
 
     public void EndTurn()
@@ -108,11 +141,71 @@ public class AIController : MonoBehaviour
     {
         // Refresh energy
         animator.SetFloat("energy", 10);
-        
+
         // End the day
-        turnsLeft = 1;
+        if (animator.GetBool("nocturnal"))
+        {
+            turnsLeft = (GameManager.instance.turnsPerDay / 2) + 1;
+        }
+        else
+        {
+            turnsLeft = 1;
+        }
         EndTurn();
     }
+
+    public void Feed()
+    {
+        optionOneText.text = "Sour";
+        optionTwoText.text = "Sweet";
+        optionThreeText.text = "Spicy";
+
+        ResetOptions();
+        optionOneButton.onClick.AddListener(FeedSour);
+        optionTwoButton.onClick.AddListener(FeedSweet);
+        optionThreeButton.onClick.AddListener(FeedSpicy);
+        ToggleOptions();
+
+    }
+
+    private void FeedSour()
+    {
+        if (animator.GetInteger("nature") == 1)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
+        }
+        else if (animator.GetInteger("nature") == 3)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
+        }
+        ToggleOptions();
+    }
+    private void FeedSweet()
+    {
+        if (animator.GetInteger("nature") == 2)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
+        }
+        else if (animator.GetInteger("nature") == 1)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
+        }
+        ToggleOptions();
+    }
+    private void FeedSpicy()
+    {
+        if (animator.GetInteger("nature") == 3)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
+        }
+        else if (animator.GetInteger("nature") == 2)
+        {
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
+        }
+        ToggleOptions();
+    }
+
+
 
     public void ResetStats()
     {
@@ -123,7 +216,6 @@ public class AIController : MonoBehaviour
         animator.SetFloat("affection", defaultAffection);
         animator.SetFloat("entertainment", defaultEntertainment);
         animator.SetFloat("health", defaultHealth);
-        animator.SetInteger("weather", defaultWeather);
     }
 
 }

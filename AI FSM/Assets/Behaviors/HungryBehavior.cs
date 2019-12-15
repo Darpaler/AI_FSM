@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BoredBehavior : StateMachineBehaviour
+public class HungryBehavior : StateMachineBehaviour
 {
     // Variables
     private Animator animator;
@@ -11,7 +11,6 @@ public class BoredBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         this.animator = animator;
         GameManager.instance.actionOneButton.GetComponentInChildren<TextMeshProUGUI>().text = "Play";
         GameManager.instance.actionTwoButton.GetComponentInChildren<TextMeshProUGUI>().text = "Feed";
@@ -27,7 +26,7 @@ public class BoredBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    //
+    //    
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -53,31 +52,28 @@ public class BoredBehavior : StateMachineBehaviour
         // Lower Entertainment
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
 
-        // Restore hunger
         animator.SetFloat("hunger", animator.GetFloat("hunger") + 4);
-
+        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 2, 0, 10));
         // If over fed
         if (animator.GetFloat("hunger") > 10)
         {
             // Max hunger
             animator.SetFloat("hunger", 10);
             // Lower affection
-            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 3, 0, 10));
+            animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 2, 0, 10));
+        }
+        else
+        {
+            GameManager.instance.virtualPet.Feed();
         }
         GameManager.instance.virtualPet.EndTurn();
     }
 
     void Play()
     {
-        // Raise Entertainment
-        animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") + 3, 0, 10));
-
-        // Raise Entertainment
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 3, 0, 10));
-
-        // Lower Energy
+        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 3, 0, 10));
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);
-
+        animator.SetFloat("health", animator.GetFloat("health") - 2);
         GameManager.instance.virtualPet.EndTurn();
     }
 
@@ -86,6 +82,7 @@ public class BoredBehavior : StateMachineBehaviour
         // Lower Entertainment
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
 
+        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 2f, 0, 10));
         GameManager.instance.virtualPet.Sleep();
     }
 
@@ -93,12 +90,10 @@ public class BoredBehavior : StateMachineBehaviour
     {
         // Lower Entertainment
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 3, 0, 10));
+        animator.SetFloat("health", animator.GetFloat("health") - 2);
 
-        // Lower Affection
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
-
-        // Lower Energy
-        animator.SetFloat("energy", animator.GetFloat("energy") - 1);
+        animator.SetFloat("energy", animator.GetFloat("energy") - 4);
         GameManager.instance.virtualPet.EndTurn();
     }
+
 }

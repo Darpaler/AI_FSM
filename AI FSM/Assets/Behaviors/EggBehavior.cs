@@ -29,6 +29,10 @@ public class EggBehavior : StateMachineBehaviour
         GameManager.instance.actionTwoButton.onClick.AddListener(Throw);
         GameManager.instance.actionThreeButton.onClick.AddListener(Wait);
         GameManager.instance.pass.gameObject.SetActive(false);
+
+        // Set Nature
+        animator.SetInteger("nature", Random.Range(1, 3));
+        Debug.Log(animator.GetInteger("nature"));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
