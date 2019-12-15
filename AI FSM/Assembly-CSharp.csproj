@@ -70,10 +70,12 @@
     <Compile Include="Assets\Behaviors\HungryBehavior.cs" />
     <Compile Include="Assets\Behaviors\SadBehavior.cs" />
     <Compile Include="Assets\Behaviors\SleepyBehavior.cs" />
-    <Compile Include="Assets\CryingBehavior.cs" />
-    <Compile Include="Assets\ExcitedBehavior.cs" />
+    <Compile Include="Assets\Scenes\CryingBehavior.cs" />
+    <Compile Include="Assets\Scenes\ExcitedBehavior.cs" />
     <Compile Include="Assets\Scripts\AIController.cs" />
+    <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Node.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

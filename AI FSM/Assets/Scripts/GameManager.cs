@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [Header("World Settings")]
     public int turnsPerDay;
 
+    [Header("Pathfinding Settings")] public List<Node> nodes;
     void Awake()
     {
         if (instance == null)
