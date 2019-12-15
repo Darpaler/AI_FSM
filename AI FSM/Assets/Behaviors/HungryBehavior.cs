@@ -55,7 +55,6 @@ public class HungryBehavior : StateMachineBehaviour
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
 
         animator.SetFloat("hunger", animator.GetFloat("hunger") + 4);
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 2, 0, 10));
         // If over fed
         if (animator.GetFloat("hunger") > 10)
         {

@@ -79,7 +79,7 @@ public class BoredBehavior : StateMachineBehaviour
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") + 3, 0, 10));
 
         // Raise Entertainment
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 3, 0, 10));
+        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
 
         // Lower Energy
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);

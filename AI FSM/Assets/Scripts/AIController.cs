@@ -192,6 +192,8 @@ public class AIController : MonoBehaviour
         {
             animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
         }
+
+        SetUI();
         ToggleOptions();
     }
     private void FeedSweet()
@@ -204,6 +206,8 @@ public class AIController : MonoBehaviour
         {
             animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
         }
+
+        SetUI();
         ToggleOptions();
     }
     private void FeedSpicy()
@@ -216,6 +220,7 @@ public class AIController : MonoBehaviour
         {
             animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 1, 0, 10));
         }
+        SetUI();
         ToggleOptions();
     }
 

@@ -22,15 +22,16 @@ public class SadBehavior : StateMachineBehaviour
         GameManager.instance.actionTwoButton.onClick.AddListener(Feed);
         GameManager.instance.actionThreeButton.onClick.AddListener(Sleep);
         GameManager.instance.pass.onClick.AddListener(Pass);
-
-        GameManager.instance.virtualPet.affectionUI.color = Color.blue;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (GameManager.instance.virtualPet.affectionUI.color != Color.blue || GameManager.instance.virtualPet.affectionUI.color != Color.red)
+        {
+            GameManager.instance.virtualPet.affectionUI.color = Color.blue;
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -79,7 +80,7 @@ public class SadBehavior : StateMachineBehaviour
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") + 3, 0, 10));
 
         // Raise Entertainment
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 3, 0, 10));
+        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 1, 0, 10));
 
         // Lower Energy
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);

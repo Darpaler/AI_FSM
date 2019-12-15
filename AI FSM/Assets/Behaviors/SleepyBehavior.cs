@@ -89,8 +89,6 @@ public class SleepyBehavior : StateMachineBehaviour
     {
         // Lower Entertainment
         animator.SetFloat("entertainment", Mathf.Clamp(animator.GetFloat("entertainment") - 1, 0, 10));
-
-        animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") + 0.5f, 0, 10));
         GameManager.instance.virtualPet.Sleep();
     }
 
