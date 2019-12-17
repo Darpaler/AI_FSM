@@ -75,7 +75,7 @@ public class HungryBehavior : StateMachineBehaviour
         animator.SetFloat("affection", Mathf.Clamp(animator.GetFloat("affection") - 3, 0, 10));
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);
         animator.SetFloat("health", animator.GetFloat("health") - 2);
-        GameManager.instance.virtualPet.EndTurn();
+        GameManager.instance.virtualPet.Play();
     }
 
     void Sleep()

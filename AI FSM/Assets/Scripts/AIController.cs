@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AIController : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class AIController : MonoBehaviour
     private float defaultAffection;
     private float defaultEntertainment;
     private float defaultHealth;
+
+    [HideInInspector]
+    public bool isPlaying = false;
 
 
 
@@ -107,15 +111,15 @@ public class AIController : MonoBehaviour
 
     }
 
-    private void ToggleOptions()
+   public void ToggleOptions()
     {
         GameManager.instance.actionOneButton.gameObject.SetActive(!GameManager.instance.actionOneButton.gameObject.activeSelf);
         GameManager.instance.actionTwoButton.gameObject.SetActive(!GameManager.instance.actionTwoButton.gameObject.activeSelf);
         GameManager.instance.actionThreeButton.gameObject.SetActive(!GameManager.instance.actionThreeButton.gameObject.activeSelf);
         GameManager.instance.pass.gameObject.SetActive(!GameManager.instance.pass.gameObject.activeSelf);
+        optionTwoButton.gameObject.SetActive(!optionOneButton.gameObject.activeSelf);
+        optionThreeButton.gameObject.SetActive(!optionOneButton.gameObject.activeSelf);
         optionOneButton.gameObject.SetActive(!optionOneButton.gameObject.activeSelf);
-        optionTwoButton.gameObject.SetActive(!optionTwoButton.gameObject.activeSelf);
-        optionThreeButton.gameObject.SetActive(!optionThreeButton.gameObject.activeSelf);
     }
 
     public void EndTurn()
@@ -179,7 +183,22 @@ public class AIController : MonoBehaviour
         optionTwoButton.onClick.AddListener(FeedSweet);
         optionThreeButton.onClick.AddListener(FeedSpicy);
         ToggleOptions();
+    }
 
+    public void Play()
+    {
+        GameManager.instance.virtualPet.GetComponent<Renderer>().enabled = false;
+        optionOneText.text = "Throw Ball";
+        ResetOptions();
+        optionOneButton.onClick.AddListener(ThrowBall);
+        ToggleOptions();
+        optionTwoButton.gameObject.SetActive(false);
+        optionThreeButton.gameObject.SetActive(false);
+        SceneManager.LoadScene("Fetch", LoadSceneMode.Additive);
+    }
+    void ThrowBall()
+    {
+        isPlaying = true;
     }
 
     private void FeedSour()

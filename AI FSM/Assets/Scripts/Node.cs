@@ -10,11 +10,12 @@ public class Node : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Add all nodes to the list
-        if (!GameManager.instance.nodes.Contains(this))
-        {
-            GameManager.instance.nodes.Add(this);
-        }
+
+    }
+
+    private void Update()
+    {
+
     }
 
     public bool ContainsLinkTo(Node target)

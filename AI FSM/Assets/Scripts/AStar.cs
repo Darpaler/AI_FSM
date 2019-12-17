@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AStar : MonoBehaviour
 {
@@ -24,15 +25,23 @@ public class AStar : MonoBehaviour
     public List<NodeRecord> openList;
     public List<NodeRecord> closedList;
 
+    private bool reachedGoal = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("StartPathfinding");
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.instance.ConnectAllNodes();
+            GameManager.instance.nodesParent.GetComponent<Fetch>().ShowGoal();
+            StartCoroutine("StartPathfinding");
+        }
         if (isRunning)
         {
             Move();
@@ -184,10 +193,14 @@ public class AStar : MonoBehaviour
             }
         }
         // else we reached the end
-        else
+        else if (!reachedGoal)
         {
-            // TODO: Add work to do if we are at the end
-
+            Debug.Log("Reached Goal");
+            GameManager.instance.virtualPet.ToggleOptions();
+            SceneManager.UnloadSceneAsync("Fetch");
+            GameManager.instance.virtualPet.GetComponent<Renderer>().enabled = true;
+            GameManager.instance.virtualPet.EndTurn();
+            reachedGoal = true;
         }
     }
 
@@ -306,5 +319,13 @@ public class AStar : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void PlayFetch()
+    {
+        GameManager.instance.ConnectAllNodes();
+        GameManager.instance.nodesParent.GetComponent<Fetch>().ShowGoal();
+        GameManager.instance.nodesParent.GetComponent<Fetch>().ai.StartCoroutine("StartPathfinding");
+        GameManager.instance.virtualPet.isPlaying = false;
     }
 }

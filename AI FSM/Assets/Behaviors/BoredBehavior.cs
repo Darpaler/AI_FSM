@@ -84,7 +84,7 @@ public class BoredBehavior : StateMachineBehaviour
         // Lower Energy
         animator.SetFloat("energy", animator.GetFloat("energy") - 2);
 
-        GameManager.instance.virtualPet.EndTurn();
+        GameManager.instance.virtualPet.Play();
     }
 
     void Sleep()
