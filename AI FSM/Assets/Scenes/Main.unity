@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 475743006}
   - component: {fileID: 475743005}
   - component: {fileID: 475743008}
+  - component: {fileID: 475743009}
   m_Layer: 0
   m_Name: VirtualPet
   m_TagString: Untagged
@@ -365,6 +366,23 @@ MonoBehaviour:
   optionOneButton: {fileID: 552070729}
   optionTwoButton: {fileID: 865699628}
   optionThreeButton: {fileID: 2109084723}
+  isPlaying: 0
+--- !u!114 &475743009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475743004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9c830c20d3da4382b0d451370bd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSee: 1
+  fovAngle: 0.5
+  turnSpeed: 50
+  test: {fileID: 0}
 --- !u!1 &510390717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,6 +3279,10 @@ MonoBehaviour:
   slothSprite: {fileID: 21300000, guid: 11bfa60091483e14da76c621919be348, type: 3}
   eggSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   turnsPerDay: 6
+  nodesParent: {fileID: 0}
+  nodes: []
+  numberOfRows: 12
+  numberOfCols: 8
 --- !u!4 &1966790559
 Transform:
   m_ObjectHideFlags: 0
